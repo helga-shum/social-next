@@ -121,7 +121,7 @@ const Profiles = () => {
     getFollowing();
   };
 
-  const queryMultiple = () => {
+  const useMultiple = () => {
     const userRes = useQuery({
       queryFn: getUser,
       queryKey: ["user"],
@@ -146,7 +146,7 @@ const Profiles = () => {
     { isLoading: friendsLoad, error: friendsError },
     { isLoading: postsLoad, error: postsError },
     { isLoading: followLoad, error: followError },
-  ] = queryMultiple();
+  ] = useMultiple();
 
   if (userError) return userError;
   if (userLoad) return "User Loading.....";

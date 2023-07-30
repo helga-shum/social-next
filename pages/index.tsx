@@ -5,7 +5,6 @@ import Topbar from "@/components/Topbar";
 import Sidebar from "@/components/Sidebar";
 import Feed from "@/components/Feed";
 import Rightbar from "@/components/Rightbar";
-import usePosts from "@/hooks/usePosts";
 import axios from "axios";
 import { useQuery } from "react-query";
 import useCurrentUser from "@/hooks/useCurrentUser";
@@ -66,7 +65,7 @@ const Home = () => {
     return response.data;
   };
 
-  const queryMultiple = () => {
+  const useMultiple = () => {
     const followersRes = useQuery({
       queryFn: getFollowers,
       queryKey: ["followers"],
@@ -81,7 +80,7 @@ const Home = () => {
   const [
     { isLoading: followerLoad, error: followerError },
     { isLoading: postLoad, error: postError },
-  ] = queryMultiple();
+  ] = useMultiple();
 
   if (followerError) return followerError;
   if (followerLoad) return "Followers Loading.....";
